@@ -15,6 +15,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 //styles
 import styles from './styles';
+
+//customHook
 import useAxios from '../../hooks/useAxios';
 
 export type IindexProps = {
@@ -44,7 +46,7 @@ const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
     }
   }, [response]);
 
-  const onPress = (value: IDelivery) => {
+  const chooseDelivery = (value: IDelivery) => {
     navigation.navigate('CustomDetails', { details: value });
   };
 
@@ -62,7 +64,7 @@ const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
           )}
           {(deliveries || []).map((item: IDelivery) => (
             <View key={item.id}>
-              <TouchableOpacity style={styles.button} onPress={() => onPress(item)}>
+              <TouchableOpacity style={styles.button} onPress={() => chooseDelivery(item)}>
                 {item.isActive ? (
                   <View style={styles.cardCurrent}>
                     <Text style={styles.textSelected}>{item.customer} - Current Delivery</Text>

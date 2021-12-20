@@ -3,18 +3,20 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, Alert, ActivityIndicator } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../redux/stores/hooks';
 import CustomButton from '../../components/CustomButton';
-import { IDelivery } from '../../DTOs/deliveriesType';
+import { base_API } from '../../API';
 import {
   deliveriesUpdatedAction,
   deliveryRemoveAction,
 } from '../../redux/actions/deliveriesActions';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+//types
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
+import { IDelivery } from '../../DTOs/deliveriesType';
 
 //styles
 import styles from './styles';
-import { base_API } from '../../API';
 
 interface IProps {
   route: RouteProp<any, any> | any;

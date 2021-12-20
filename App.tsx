@@ -6,9 +6,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CustomDetails from './src/screens/CustomerDetails';
 import { Theme } from './src/theme/themeProvider';
 
+//store & customTypes
 const store = generateStore();
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
 export default function App() {
   const Stack = createNativeStackNavigator<any>();
   const noHeaderConfig = {
