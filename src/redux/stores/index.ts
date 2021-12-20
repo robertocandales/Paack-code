@@ -2,9 +2,9 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 // Import Reducers
+import { rootReducer } from '../reducers/rootReducer';
 
 let composeEnhancers = compose;
-import { rootReducer } from '../reducers/rootReducer';
 
 if (__DEV__) {
   composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

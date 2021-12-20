@@ -3,7 +3,6 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { base_API } from '../API';
 
 axios.defaults.baseURL = base_API;
-//If you are using different URLs, consider removing this line and adding a baseURL in the Axios Config parameter.
 
 const useAxios = (axiosParams: AxiosRequestConfig) => {
   const [response, setResponse] = useState<AxiosResponse>();

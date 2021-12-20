@@ -2,18 +2,19 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, Alert, ActivityIndicator } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../redux/stores/hooks';
-import { base_API } from '../../API';
 import CustomButton from '../../components/CustomButton';
 import { IDelivery } from '../../DTOs/deliveriesType';
 import { deliveriesActions, deliveryActive } from '../../redux/actions/deliveriesActions';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
 //styles
 import styles from './styles';
 
 interface IProps {
-  route: any;
-  navigation: any;
+  route: RouteProp<any, any> | any;
+  navigation: StackNavigationProp<any, any>;
 }
 
 const CustomDetails: React.FC<IProps> = ({ route, navigation }: IProps) => {
@@ -42,14 +43,20 @@ const CustomDetails: React.FC<IProps> = ({ route, navigation }: IProps) => {
       latitude: info.latitude,
       longitude: info.longitude,
     };
-    const res = await axios.post(`${base_API}/finishDelivery/`, data);
-    console.log(res, 'res');
-    if (res.data) {
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-      Alert.alert('error');
-    }
+    const removedelivery = deliveries.filter((item: IDelivery) => item.id !== data.deliveryId);
+    dispatch(deliveriesActions(removedelivery));
+    navigation.navigate('DeliveriesList');
+    /*********Post request is not working, these lines should be used when endpoint is fixed*********/
+    //try {
+    //  const res = await axios.post(`${base_API}/finishDelivery/`, data);
+    //  if (res.data) {
+    //    setIsLoading(false);
+    //  }
+    //  console.log(res, 'res');
+    //} catch (error) {
+    //  setIsLoading(false);
+    //  Alert.alert('error');
+    //}
   };
 
   const deliveryDetails = deliveries.find((item: IDelivery) => item.id === details.id);
