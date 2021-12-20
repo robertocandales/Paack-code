@@ -27,7 +27,7 @@ The template already has scripts to execute the project calling a specific envir
 
 ## Some images of the project
 
-![2](https://user-images.githubusercontent.com/61159123/146764146-a0a44baf-f5f9-4467-aea7-f66890e8a105.png)
+![2](https://user-images.githubusercontent.com/61159123/146764146-a0a44baf-f5f9-4467-aea7-f66890e8a105.png | width=100)
 ![1](https://user-images.githubusercontent.com/61159123/146764150-dc85d848-cc32-4ccd-8a7a-27c442e000ce.png)
 ![3](https://user-images.githubusercontent.com/61159123/146764142-391b94ae-ccaa-423e-86c4-ef60f4c26402.png)
 ![4](https://user-images.githubusercontent.com/61159123/146764135-0326ff65-766c-4cc2-81f4-5007552d039b.png)
