@@ -35,7 +35,7 @@ The template already has scripts to execute the project calling a specific envir
 
 <img src="https://user-images.githubusercontent.com/61159123/146764135-0326ff65-766c-4cc2-81f4-5007552d039b.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
 
-Solarized dark             |  Solarized Ocean           
-:-------------------------:|:--------------------------:
-<img src="https://user-images.githubusercontent.com/61159123/146764142-391b94ae-ccaa-423e-86c4-ef60f4c26402.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />  |  <img src="https://user-images.githubusercontent.com/61159123/146764142-391b94ae-ccaa-423e-86c4-ef60f4c26402.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
+Solarized dark             |  Solarized Ocean           | Solarized dark             |  Solarized Ocean           
+:-------------------------:|:--------------------------:|:--------------------------:|:--------------------------:
+<img src="https://user-images.githubusercontent.com/61159123/146764142-391b94ae-ccaa-423e-86c4-ef60f4c26402.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />  |  <img src="https://user-images.githubusercontent.com/61159123/146764142-391b94ae-ccaa-423e-86c4-ef60f4c26402.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />|  <img src="https://user-images.githubusercontent.com/61159123/146764142-391b94ae-ccaa-423e-86c4-ef60f4c26402.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />|  <img src="https://user-images.githubusercontent.com/61159123/146764142-391b94ae-ccaa-423e-86c4-ef60f4c26402.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
 
