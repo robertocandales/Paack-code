@@ -1,4 +1,4 @@
-import { DELIVERIES_LIST, ACTIVE_DELIVERY, REMOVE_DELIVERY, UPDATE_DELIVERY } from '../types';
+import { DELIVERIES_LIST, REMOVE_DELIVERY, UPDATE_DELIVERY } from '../types';
 import { IDelivery } from '../../DTOs/deliveriesType';
 import { Reducer } from 'redux';
 

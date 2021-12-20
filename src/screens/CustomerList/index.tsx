@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import {
   TouchableOpacity,
   Text,

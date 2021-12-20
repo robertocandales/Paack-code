@@ -6,7 +6,6 @@ import CustomButton from '../../components/CustomButton';
 import { IDelivery } from '../../DTOs/deliveriesType';
 import {
   deliveriesUpdatedAction,
-  deliveryActive,
   deliveryRemoveAction,
 } from '../../redux/actions/deliveriesActions';
 import Icon from 'react-native-vector-icons/FontAwesome';
