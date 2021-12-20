@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   TouchableOpacity,
   Text,
@@ -32,12 +32,14 @@ const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
       accept: '*/*',
     },
   });
+
   useEffect(() => {
     if (response !== null) {
       const listOfDeliveries: IDelivery[] = response?.data.map((item: IDelivery) => ({
         ...item,
         isActive: false,
       }));
+
       dispatch(deliveriesActions(listOfDeliveries));
     }
   }, [response]);
