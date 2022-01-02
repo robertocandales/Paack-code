@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, Alert, ActivityIndicator } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../redux/stores/hooks';
 import CustomButton from '../../components/CustomButton';
-import { base_API } from '../../API';
 import {
   deliveriesUpdatedAction,
   deliveryRemoveAction,
+  deliveryPostRemoveAction,
 } from '../../redux/actions/deliveriesActions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 //types
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { IDelivery } from '../../DTOs/deliveriesType';
+import { IDelivery, IDeliveryFinished } from '../../DTOs/deliveriesType';
 
 //styles
 import styles from './styles';
@@ -26,33 +26,23 @@ interface IProps {
 const CustomDetails: React.FC<IProps> = ({ route, navigation }: IProps) => {
   const dispatch = useAppDispatch();
   const { deliveries } = useAppSelector((state) => state.deliveries);
+  const { isLoading } = useAppSelector((state) => state.loading);
+
   const { details } = route.params;
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const onPress = (value: IDelivery) => {
     dispatch(deliveriesUpdatedAction(value));
   };
 
   const finishDelivery = async (info: IDelivery, value: string) => {
-    setIsLoading(true);
-    const data = {
+    const data: IDeliveryFinished = {
       deliveryId: info.id,
       status: value,
       latitude: info.latitude,
       longitude: info.longitude,
     };
-
-    try {
-      const res = await axios.post(`${base_API}/finishDelivery/`, data);
-      if (res.status === 201) {
-        dispatch(deliveryRemoveAction(res.data));
-        navigation.navigate('DeliveriesList');
-        setIsLoading(false);
-      }
-    } catch (error) {
-      setIsLoading(false);
-      Alert.alert('error');
-    }
+    dispatch(deliveryPostRemoveAction(data));
+    navigation.navigate('DeliveriesList');
   };
 
   const deliveryDetails = deliveries?.find((item: IDelivery) => item.id === details.id);

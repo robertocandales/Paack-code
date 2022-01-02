@@ -1,6 +1,25 @@
-import { DELIVERIES_LIST, REMOVE_DELIVERY, UPDATE_DELIVERY } from '../types';
+import { DELIVERIES_LIST, REMOVE_DELIVERY, UPDATE_DELIVERY, IS_LOADING } from '../types';
 import { Dispatch } from 'redux';
-import { IDelivery } from '../../DTOs/deliveriesType';
+import { IDelivery, IDeliveryFinished } from '../../DTOs/deliveriesType';
+import DeliveryService from '../../../services/deliveriesServices';
+
+export function isLoadingAction(isLoading = false) {
+  return {
+    type: IS_LOADING,
+    payload: isLoading,
+  };
+}
+
+export const getDeliveiesAction: any = async (dispatch: any) => {
+  try {
+    dispatch(isLoadingAction(true));
+    const res = await DeliveryService.getDeliveries();
+    dispatch(deliveriesActions(res));
+    dispatch(isLoadingAction(false));
+  } catch (error) {
+    console.log('error');
+  }
+};
 
 export const deliveriesActions: any = (data: IDelivery[]) => async (dispatch: any) => {
   try {
@@ -34,3 +53,15 @@ export const deliveryRemoveAction: any = (data: IDelivery) => async (dispatch: D
     console.log('error');
   }
 };
+
+export const deliveryPostRemoveAction: any =
+  (value: IDeliveryFinished) => async (dispatch: any) => {
+    try {
+      dispatch(isLoadingAction(true));
+      const res = await DeliveryService.finishDelivery(value);
+      dispatch(deliveryRemoveAction(res));
+      dispatch(isLoadingAction(false));
+    } catch (error) {
+      console.log('error');
+    }
+  };
