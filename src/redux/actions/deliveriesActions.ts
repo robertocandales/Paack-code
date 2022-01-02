@@ -1,7 +1,7 @@
 import { DELIVERIES_LIST, REMOVE_DELIVERY, UPDATE_DELIVERY, IS_LOADING } from '../types';
 import { Dispatch } from 'redux';
 import { IDelivery, IDeliveryFinished } from '../../DTOs/deliveriesType';
-import DeliveryService from '../../../services/deliveriesServices';
+import DeliveryService from '../../services/deliveriesServices';
 
 export function isLoadingAction(isLoading = false) {
   return {

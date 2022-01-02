@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BASE_API } from '../src/API';
-import { IDelivery, IDeliveryFinished } from '../src/DTOs/deliveriesType';
+import { BASE_API } from '../API';
+import { IDelivery, IDeliveryFinished } from '../DTOs/deliveriesType';
 
 const client = axios.create({
   baseURL: `${BASE_API}`,
