@@ -8,3 +8,10 @@ export interface IDelivery {
   id: string;
   isActive?: boolean;
 }
+
+export interface IDeliveryFinished {
+  latitude: string;
+  longitude: string;
+  deliveryId: string;
+  status: string;
+}

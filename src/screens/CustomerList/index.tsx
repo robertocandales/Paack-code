@@ -10,14 +10,12 @@ import {
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../redux/stores/hooks';
 import { IDelivery } from '../../DTOs/deliveriesType';
-import { deliveriesActions } from '../../redux/actions/deliveriesActions';
+import { getDeliveiesAction } from '../../redux/actions/deliveriesActions';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 //styles
 import styles from './styles';
-
-//customHook
-import useAxios from '../../hooks/useAxios';
+import { Theme } from '../../theme/themeProvider';
 
 export type IindexProps = {
   navigation: StackNavigationProp<any, any>;
@@ -26,25 +24,11 @@ export type IindexProps = {
 const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
   const dispatch = useAppDispatch();
   const { deliveries } = useAppSelector((state) => state.deliveries);
-
-  const { response, loading, error } = useAxios({
-    method: 'get',
-    url: `/deliveries`,
-    headers: {
-      accept: '*/*',
-    },
-  });
+  const { isLoading } = useAppSelector((state) => state.loading);
 
   useEffect(() => {
-    if (response !== null) {
-      const listOfDeliveries: IDelivery[] = response?.data.map((item: IDelivery) => ({
-        ...item,
-        isActive: false,
-      }));
-
-      dispatch(deliveriesActions(listOfDeliveries));
-    }
-  }, [response]);
+    dispatch(getDeliveiesAction);
+  }, []);
 
   const chooseDelivery = (value: IDelivery) => {
     navigation.navigate('CustomDetails', { details: value });
@@ -53,32 +37,31 @@ const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Deliveries List</Text>
-      {loading ? (
-        <ActivityIndicator size='large' />
-      ) : (
-        <ScrollView style={styles.scrollView}>
-          {error && (
-            <View>
-              <Text>{error.message}</Text>
-            </View>
-          )}
-          {(deliveries || []).map((item: IDelivery) => (
-            <View key={item.id}>
-              <TouchableOpacity style={styles.button} onPress={() => chooseDelivery(item)}>
-                {item.isActive ? (
-                  <View style={styles.cardCurrent}>
-                    <Text style={styles.textSelected}>{item.customer} - Current Delivery</Text>
-                  </View>
-                ) : (
-                  <View style={styles.card}>
-                    <Text style={styles.text}>{item.customer}</Text>
-                  </View>
-                )}
-              </TouchableOpacity>
-            </View>
-          ))}
-        </ScrollView>
+      {isLoading && (
+        <View style={styles.indicator}>
+          <ActivityIndicator size='large' color={Theme.colors.notification} />
+        </View>
       )}
+      <ScrollView style={styles.scrollView}>
+        {(deliveries || []).map((item: IDelivery) => (
+          <View key={item.id}>
+            <TouchableOpacity
+              disabled={isLoading}
+              style={styles.button}
+              onPress={() => chooseDelivery(item)}>
+              {item.isActive ? (
+                <View style={styles.cardCurrent}>
+                  <Text style={styles.textSelected}>{item.customer} - Current Delivery</Text>
+                </View>
+              ) : (
+                <View style={styles.card}>
+                  <Text style={styles.text}>{item.customer}</Text>
+                </View>
+              )}
+            </TouchableOpacity>
+          </View>
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };

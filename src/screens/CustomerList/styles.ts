@@ -5,6 +5,12 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
+  indicator: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    zIndex: 20,
+  },
   scrollView: {
     marginHorizontal: 0,
   },
