@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { IDelivery, IDeliveryFinished } from '../../DTOs/deliveriesType';
 import DeliveryService from '../../services/deliveriesServices';
 
-export function isLoadingAction(isLoading = false) {
+export function isLoadingAction(isLoading: boolean = false) {
   return {
     type: IS_LOADING,
     payload: isLoading,
