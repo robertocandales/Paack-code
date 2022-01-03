@@ -1,17 +1,15 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { TouchableOpacity, Text, View, Alert, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, Text, View, ActivityIndicator } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../redux/stores/hooks';
 import CustomButton from '../../components/CustomButton';
 import {
   deliveriesUpdatedAction,
-  deliveryRemoveAction,
   deliveryPostRemoveAction,
 } from '../../redux/actions/deliveriesActions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 //types
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { RouteProp } from '@react-navigation/native';
 import { IDelivery, IDeliveryFinished } from '../../DTOs/deliveriesType';
 
@@ -20,7 +18,7 @@ import styles from './styles';
 
 interface IProps {
   route: RouteProp<any, any> | any;
-  navigation: StackNavigationProp<any, any>;
+  navigation: NavigationProp<ParamListBase>;
 }
 
 const CustomDetails: React.FC<IProps> = ({ route, navigation }: IProps) => {
