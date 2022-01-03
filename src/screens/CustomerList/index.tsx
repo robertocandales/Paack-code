@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
 import {
   Text,
@@ -11,7 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../redux/stores/hooks';
 import { IDelivery } from '../../DTOs/deliveriesType';
 import { getDeliveiesAction } from '../../redux/actions/deliveriesActions';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
 //styles
 import styles from './styles';
@@ -19,7 +18,7 @@ import { Theme } from '../../theme/themeProvider';
 import Item from './components/Item';
 
 export type IindexProps = {
-  navigation: StackNavigationProp<any, any>;
+  navigation: NavigationProp<ParamListBase>;
 };
 
 const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
@@ -36,7 +35,7 @@ const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
   };
 
   const renderItem = ({ item }: ListRenderItemInfo<IDelivery>) => {
-    return <Item item={item} onPress={chooseDelivery} />;
+    return <Item key={item.id} item={item} onPress={chooseDelivery} />;
   };
 
   return (
