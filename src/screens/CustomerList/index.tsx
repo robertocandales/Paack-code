@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import {
-  TouchableOpacity,
   Text,
   SafeAreaView,
-  ScrollView,
   View,
   ActivityIndicator,
+  FlatList,
+  ListRenderItemInfo,
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../redux/stores/hooks';
 import { IDelivery } from '../../DTOs/deliveriesType';
@@ -16,6 +16,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 //styles
 import styles from './styles';
 import { Theme } from '../../theme/themeProvider';
+import Item from './components/Item';
 
 export type IindexProps = {
   navigation: StackNavigationProp<any, any>;
@@ -34,6 +35,10 @@ const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
     navigation.navigate('CustomDetails', { details: value });
   };
 
+  const renderItem = ({ item }: ListRenderItemInfo<IDelivery>) => {
+    return <Item item={item} onPress={chooseDelivery} />;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Deliveries List</Text>
@@ -42,26 +47,8 @@ const CustomList: React.FC<IindexProps> = ({ navigation }: IindexProps) => {
           <ActivityIndicator size='large' color={Theme.colors.notification} />
         </View>
       )}
-      <ScrollView style={styles.scrollView}>
-        {(deliveries || []).map((item: IDelivery) => (
-          <View key={item.id}>
-            <TouchableOpacity
-              disabled={isLoading}
-              style={styles.button}
-              onPress={() => chooseDelivery(item)}>
-              {item.isActive ? (
-                <View style={styles.cardCurrent}>
-                  <Text style={styles.textSelected}>{item.customer} - Current Delivery</Text>
-                </View>
-              ) : (
-                <View style={styles.card}>
-                  <Text style={styles.text}>{item.customer}</Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          </View>
-        ))}
-      </ScrollView>
+
+      <FlatList data={deliveries} renderItem={renderItem} keyExtractor={(item) => item.id} />
     </SafeAreaView>
   );
 };
