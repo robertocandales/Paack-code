@@ -1,6 +1,5 @@
 import { DELIVERIES_LIST, REMOVE_DELIVERY, UPDATE_DELIVERY } from '../types';
-import { IDelivery } from '../../DTOs/deliveriesType';
-import { Reducer } from 'redux';
+import { Action, IDelivery } from '../../DTOs/deliveriesType';
 
 interface IinitialState {
   deliveries: IDelivery[];
@@ -9,10 +8,7 @@ interface IinitialState {
 const initialState: IinitialState = {
   deliveries: [],
 };
-const deliveriesReducer: Reducer<IinitialState | any, any> = (
-  state = initialState,
-  action: any,
-) => {
+const deliveriesReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case DELIVERIES_LIST:
       return { ...state, deliveries: action.payload };
@@ -30,9 +26,7 @@ const deliveriesReducer: Reducer<IinitialState | any, any> = (
     case REMOVE_DELIVERY:
       return {
         ...state,
-        deliveries: state.deliveries.filter(
-          (value: IDelivery) => value.id !== action.payload.deliveryId,
-        ),
+        deliveries: state.deliveries.filter((value: IDelivery) => value.id !== action.payload.id),
       };
     default:
       return state;
