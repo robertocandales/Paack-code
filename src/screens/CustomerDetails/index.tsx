@@ -23,7 +23,7 @@ interface IProps {
 
 const CustomDetails: React.FC<IProps> = ({ route, navigation }: IProps) => {
   const dispatch = useAppDispatch();
-  const { deliveries } = useAppSelector((state) => state.deliveries);
+  const { deliveries = [] } = useAppSelector((state) => state.deliveries);
   const { isLoading } = useAppSelector((state) => state.loading);
 
   const { details } = route.params;
@@ -43,7 +43,18 @@ const CustomDetails: React.FC<IProps> = ({ route, navigation }: IProps) => {
     navigation.navigate('DeliveriesList');
   };
 
-  const deliveryDetails = deliveries?.find((item: IDelivery) => item.id === details.id);
+  const deliveryDetails: IDelivery = deliveries.find(
+    (item: IDelivery) => item.id === details.id,
+  ) ?? {
+    customer: '',
+    address: '',
+    city: '',
+    zipCode: '',
+    latitude: '',
+    longitude: '',
+    isActive: false,
+    id: '',
+  };
   return (
     <View style={styles.container}>
       {isLoading ? (

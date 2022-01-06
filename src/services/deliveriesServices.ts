@@ -7,7 +7,7 @@ const client = axios.create({
 });
 
 const DeliveryService = {
-  getDeliveries: async (): Promise<IDelivery[]> => {
+  getDeliveries: async (): Promise<IDelivery> => {
     return client.get(`/deliveries`).then((res) => {
       return res.data;
     });

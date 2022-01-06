@@ -15,3 +15,19 @@ export interface IDeliveryFinished {
   deliveryId: string;
   status: string;
 }
+
+/****** type to use in redux ****/
+interface IdeliveriesActions {
+  type: string;
+  payload: IDelivery;
+}
+interface IdeliveriesUpdatedAction {
+  type: string;
+  payload: IDelivery;
+}
+
+interface IdeliveryRemoveActiony {
+  type: string;
+  payload: IDelivery;
+}
+export type Action = IdeliveriesActions | IdeliveriesUpdatedAction | IdeliveryRemoveActiony;
